@@ -1,6 +1,7 @@
 language: php
 php:
 - 7.1.3
+- 7.2.7
 - nightly
 before_deploy:
 - git tag "${MAJOR_RELEASE_NUMBER}.${MINOR_RELEASE_NUMBER}.${TRAVIS_BUILD_NUMBER}"

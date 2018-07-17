@@ -9,7 +9,7 @@ before_install:
 script:
 - vendor/bin/phpunit
 install:
-- travis_retry composer update --prefer-dist --no-interaction --prefer-lowest --prefer-stable --no-suggest; fi
+- travis_retry composer update --prefer-dist --no-interaction --prefer-lowest --prefer-stable --no-suggest
 
 #before_deploy:
 #- git tag "${MAJOR_RELEASE_NUMBER}.${MINOR_RELEASE_NUMBER}.${TRAVIS_BUILD_NUMBER}"

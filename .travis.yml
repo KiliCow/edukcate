@@ -3,13 +3,13 @@ php:
 - 7.1.3
 - 7.2.7
 - nightly
-before_deploy:
-- git tag "${MAJOR_RELEASE_NUMBER}.${MINOR_RELEASE_NUMBER}.${TRAVIS_BUILD_NUMBER}"
-- zip edukcate-archive.zip .
-deploy:
-  provider: releases
-  api_key:
-    secure: in9+OMQ6Hrq7iJUia0s+wEjhfRE98K2VCIVC3LnjzMU1EAp18+oFTCleZZm8X7JghV26v8kTUpo07cI8fJhbcFFW0B4xgTjTVhTST3i3WvGvKaoKZCl0ck/ZCTZ0sD0fYjErgEJp4plzoLaf2Y8Or4jkZa4h2vLm1Mid0ZR7mIobN419frwwp6LCD3qgZUOjpahvkEyditDneS2hXWBMtrNqI5S7JKSKnQa4cL/GN6AMmXk+6IneXHMvTqCPdKnYsBfSSGp52ew4NWnSJCy8zLHVDecibiffPsODVKlrnm/woO0sp5CxfbuKOw6Q/zdwRenS27ILtS2mSoTNkzxabS1P5qCkgzU/Ws+pDC3HujBgVn+AFqVBmNcMRJFnCl3+v8IUBn10Q5jVQ8OtgnF2MTyRt22OfBbpYBa+FqoOLmBko2Q0creuLlSHJTQzKGMiGDRIPY9Bib+Jknw+xR4Laxi6tmaf2sgeGXOM5Y0X7nS2kcbNH0XuDJutI1kHbNmwzSmlzdwmy6tNiee3WhQa4TF59E5sZX0usglcafdKJyEhkuy46JQoZ4ToEVRnibEotDL1dnJm6CAVBeTqrlSmKfEAQEnpZRxd83NdfOOFLjoyLwdRWB33D71uDtAx94AUoXv6iP/3F3O7MUKMSPvd/tm4T/U+7WfczdGLnK3u95w=
-  file: edukcate-archive.zip
-  on:
-    repo: kilicow/edukcate
+#before_deploy:
+#- git tag "${MAJOR_RELEASE_NUMBER}.${MINOR_RELEASE_NUMBER}.${TRAVIS_BUILD_NUMBER}"
+#- zip edukcate-archive.zip .
+#deploy:
+#  provider: releases
+#  api_key:
+#    secure: in9+OMQ6Hrq7iJUia0s+wEjhfRE98K2VCIVC3LnjzMU1EAp18+oFTCleZZm8X7JghV26v8kTUpo07cI8fJhbcFFW0B4xgTjTVhTST3i3WvGvKaoKZCl0ck/ZCTZ0sD0fYjErgEJp4plzoLaf2Y8Or4jkZa4h2vLm1Mid0ZR7mIobN419frwwp6LCD3qgZUOjpahvkEyditDneS2hXWBMtrNqI5S7JKSKnQa4cL/GN6AMmXk+6IneXHMvTqCPdKnYsBfSSGp52ew4NWnSJCy8zLHVDecibiffPsODVKlrnm/woO0sp5CxfbuKOw6Q/zdwRenS27ILtS2mSoTNkzxabS1P5qCkgzU/Ws+pDC3HujBgVn+AFqVBmNcMRJFnCl3+v8IUBn10Q5jVQ8OtgnF2MTyRt22OfBbpYBa+FqoOLmBko2Q0creuLlSHJTQzKGMiGDRIPY9Bib+Jknw+xR4Laxi6tmaf2sgeGXOM5Y0X7nS2kcbNH0XuDJutI1kHbNmwzSmlzdwmy6tNiee3WhQa4TF59E5sZX0usglcafdKJyEhkuy46JQoZ4ToEVRnibEotDL1dnJm6CAVBeTqrlSmKfEAQEnpZRxd83NdfOOFLjoyLwdRWB33D71uDtAx94AUoXv6iP/3F3O7MUKMSPvd/tm4T/U+7WfczdGLnK3u95w=
+#  file: edukcate-archive.zip
+#  on:
+#    repo: kilicow/edukcate

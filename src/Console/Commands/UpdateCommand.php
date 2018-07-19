@@ -25,7 +25,7 @@ class UpdateCommand extends Command
     protected $description = 'Update the Edukcate installation';
 
     /**
-     * The target Spark major version number.
+     * The target Edukcate major version number.
      *
      * @var string
      */
@@ -46,7 +46,7 @@ class UpdateCommand extends Command
         }
 
         $downloadPath = (new Updating\DownloadRelease($this))->download(
-            $release = $this->latestSparkRelease($this->targetMajorVersion)
+            $release = $this->latestEdukcateRelease($this->targetMajorVersion)
         );
 
         $updaters = collect([

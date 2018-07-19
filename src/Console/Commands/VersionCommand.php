@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Spark\Console\Commands;
+namespace KiliCow\Edukcate\Console\Commands;
 
 use KiliCow\Edukcate\Edukcate;
 use Illuminate\Console\Command;

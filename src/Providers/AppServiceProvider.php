@@ -70,29 +70,21 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Spark::details($this->details);
+        Edukcate::details($this->details);
 
-        Spark::sendSupportEmailsTo($this->sendSupportEmailsTo);
-
-        if (count($this->developers) > 0) {
-            Spark::developers($this->developers);
-        }
+        Edukcate::sendSupportEmailsTo($this->sendSupportEmailsTo);
 
         if (count($this->roles) > 0) {
-            Spark::useRoles($this->roles);
-        }
-
-        if ($this->usesTwoFactorAuth) {
-            Spark::useTwoFactorAuth();
+            Edukcate::useRoles($this->roles);
         }
 
         if ($this->usesApi) {
-            Spark::useApi();
+            Edukcate::useApi();
         }
 
-        Spark::tokensCan($this->tokensCan);
+        Edukcate::tokensCan($this->tokensCan);
 
-        Spark::byDefaultTokensCan($this->byDefaultTokensCan);
+        Edukcate::byDefaultTokensCan($this->byDefaultTokensCan);
 
         $this->booted();
 

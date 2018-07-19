@@ -86,7 +86,7 @@ class UpdateViews
     }
 
     /**
-     * Get all of the current views for the Spark installation.
+     * Get all of the current views for the Edukcate installation.
      *
      * @return \Illuminate\Support\Collection
      */

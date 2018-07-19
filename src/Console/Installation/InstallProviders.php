@@ -42,7 +42,7 @@ class InstallProviders
         );
 
         copy(
-            EDUKCATE_STUB_PATH.'/app/Providers/SparkServiceProvider.php',
+            EDUKCATE_STUB_PATH.'/app/Providers/EdukcateServiceProvider.php',
             $providerPath = app_path('Providers/EdukcateServiceProvider.php')
         );
     }

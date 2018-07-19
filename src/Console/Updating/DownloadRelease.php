@@ -81,7 +81,7 @@ class DownloadRelease
     }
 
     /**
-     * Extract the Spark Zip archive.
+     * Extract the Edukcate Zip archive.
      *
      * @param  string  $zipPath
      * @return void

@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use KiliCow\Edukcate\Validation\StateValidator;
-use KiliCow\Edukcate\Validation\VatIdValidator;
 use KiliCow\Edukcate\Validation\CountryValidator;
 use KiliCow\Edukcate\Console\Commands\InstallCommand;
 use KiliCow\Edukcate\Console\Commands\UpdateCommand;
@@ -32,7 +31,6 @@ class EdukcateServiceProvider extends ServiceProvider
 
         Validator::extend('state', StateValidator::class.'@validate');
         Validator::extend('country', CountryValidator::class.'@validate');
-        Validator::extend('vat_id', VatIdValidator::class.'@validate');
 
         Auth::viaRequest('edukcate', function ($request) {
             return app(TokenGuard::class)->user($request);
@@ -50,7 +48,7 @@ class EdukcateServiceProvider extends ServiceProvider
 
         // If the routes have not been cached, we will include them in a route group
         // so that all of the routes will be conveniently registered to the given
-        // controller namespace. After that we will load the Spark routes file.
+        // controller namespace. After that we will load the Edukcate routes file.
         if (! $this->app->routesAreCached()) {
             Route::group([
                 'namespace' => 'KiliCow\Edukcate\Http\Controllers'],

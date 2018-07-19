@@ -32,8 +32,6 @@ class InstallModels
     public function install()
     {
         copy($this->getUserModel(), app_path('User.php'));
-
-        copy(EDUKCATE_STUB_PATH.'/app/Team.php', app_path('Team.php'));
     }
 
     /**
@@ -43,8 +41,6 @@ class InstallModels
      */
     protected function getUserModel()
     {
-        return $this->command->option('team-billing')
-                            ? EDUKCATE_STUB_PATH.'/app/TeamUser.php'
-                            : EDUKCATE_STUB_PATH.'/app/User.php';
+        return EDUKCATE_STUB_PATH.'/app/User.php';
     }
 }

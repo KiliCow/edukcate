@@ -66,7 +66,6 @@ class EdukcateServiceProvider extends ServiceProvider
      */
     protected function defineRouteBindings()
     {
-        Route::model('team', Edukcate::teamModel());
 
         Route::model('team_member', Edukcate::userModel());
     }
@@ -191,12 +190,10 @@ class EdukcateServiceProvider extends ServiceProvider
         $services = [
             'Contracts\Http\Requests\Auth\RegisterRequest' => 'Http\Requests\Auth\StripeRegisterRequest',
             'Contracts\Http\Requests\Settings\Subscription\CreateSubscriptionRequest' => 'Http\Requests\Settings\Subscription\CreateStripeSubscriptionRequest',
-            'Contracts\Http\Requests\Settings\Teams\Subscription\CreateSubscriptionRequest' => 'Http\Requests\Settings\Teams\Subscription\CreateStripeSubscriptionRequest',
             'Contracts\Http\Requests\Settings\PaymentMethod\UpdatePaymentMethodRequest' => 'Http\Requests\Settings\PaymentMethod\UpdateStripePaymentMethodRequest',
             'Contracts\Repositories\AnnouncementRepository' => 'Repositories\AnnouncementRepository',
             'Contracts\Repositories\CouponRepository' => 'Repositories\StripeCouponRepository',
             'Contracts\Repositories\NotificationRepository' => 'Repositories\NotificationRepository',
-            'Contracts\Repositories\TeamRepository' => 'Repositories\TeamRepository',
             'Contracts\Repositories\UserRepository' => 'Repositories\UserRepository',
             'Contracts\Repositories\LocalInvoiceRepository' => 'Repositories\StripeLocalInvoiceRepository',
             'Contracts\Repositories\PerformanceIndicatorsRepository' => 'Repositories\PerformanceIndicatorsRepository',
@@ -205,18 +202,11 @@ class EdukcateServiceProvider extends ServiceProvider
             'Contracts\InitialFrontendState' => 'InitialFrontendState',
             'Contracts\Interactions\Support\SendSupportEmail' => 'Interactions\Support\SendSupportEmail',
             'Contracts\Interactions\Subscribe' => 'Interactions\SubscribeUsingStripe',
-            'Contracts\Interactions\SubscribeTeam' => 'Interactions\SubscribeTeamUsingStripe',
             'Contracts\Interactions\CheckPlanEligibility' => 'Interactions\CheckPlanEligibility',
-            'Contracts\Interactions\CheckTeamPlanEligibility' => 'Interactions\CheckTeamPlanEligibility',
             'Contracts\Interactions\Auth\CreateUser' => 'Interactions\Auth\CreateUser',
             'Contracts\Interactions\Auth\Register' => 'Interactions\Auth\Register',
             'Contracts\Interactions\Settings\Profile\UpdateProfilePhoto' => 'Interactions\Settings\Profile\UpdateProfilePhoto',
             'Contracts\Interactions\Settings\Profile\UpdateContactInformation' => 'Interactions\Settings\Profile\UpdateContactInformation',
-            'Contracts\Interactions\Settings\Teams\CreateTeam' => 'Interactions\Settings\Teams\CreateTeam',
-            'Contracts\Interactions\Settings\Teams\AddTeamMember' => 'Interactions\Settings\Teams\AddTeamMember',
-            'Contracts\Interactions\Settings\Teams\UpdateTeamMember' => 'Interactions\Settings\Teams\UpdateTeamMember',
-            'Contracts\Interactions\Settings\Teams\UpdateTeamPhoto' => 'Interactions\Settings\Teams\UpdateTeamPhoto',
-            'Contracts\Interactions\Settings\Teams\SendInvitation' => 'Interactions\Settings\Teams\SendInvitation',
             'Contracts\Interactions\Settings\Security\EnableTwoFactorAuth' => 'Interactions\Settings\Security\EnableTwoFactorAuthUsingAuthy',
             'Contracts\Interactions\Settings\Security\VerifyTwoFactorAuthToken' => 'Interactions\Settings\Security\VerifyTwoFactorAuthTokenUsingAuthy',
             'Contracts\Interactions\Settings\Security\DisableTwoFactorAuth' => 'Interactions\Settings\Security\DisableTwoFactorAuthUsingAuthy',

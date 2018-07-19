@@ -44,7 +44,6 @@ class InstallImages
             EDUKCATE_STUB_PATH.'/public/img/mono-48px.png' => public_path('img/mono-48px.png'),
             EDUKCATE_STUB_PATH.'/public/img/mono-logo.png' => public_path('img/mono-logo.png'),
             EDUKCATE_STUB_PATH.'/public/img/color-logo.png' => public_path('img/color-logo.png'),
-            EDUKCATE_STUB_PATH.'/public/img/create-team.svg' => public_path('img/create-team.svg'),
         ];
 
         foreach ($files as $from => $to) {

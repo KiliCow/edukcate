@@ -12,27 +12,6 @@ trait ManagesAppOptions
     public static $afterLoginRedirectTo = '/home';
 
     /**
-     * Indicates if we should show the team switcher.
-     *
-     * @var bool
-     */
-    public static $showTeamSwitcher = true;
-
-    /**
-     * Indicates that users can create additional teams from the dashboard.
-     *
-     * @var bool
-     */
-    public static $createsAdditionalTeams = true;
-
-    /**
-     * The prefix used in the URI to describe teams.
-     *
-     * @var string
-     */
-    public static $teamsPrefix = 'teams';
-
-    /**
      * Minimum length a user given password can be.
      *
      * @var string

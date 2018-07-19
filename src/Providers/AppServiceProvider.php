@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     protected $sendSupportEmailsTo = null;
 
     /**
-     * The available team member roles.
+     * The available member roles.
      *
      * @var array
      */

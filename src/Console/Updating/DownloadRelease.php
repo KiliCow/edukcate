@@ -5,14 +5,10 @@ namespace KiliCow\Edukcate\Console\Updating;
 use ZipArchive;
 use GuzzleHttp\Client as HttpClient;
 use Illuminate\Filesystem\Filesystem;
-use KiliCow\Edukcate\InteractsWithGithubApi;
 use GuzzleHttp\Exception\ClientException;
-use KiliCow\Edukcate\InteractsWithSparkConfiguration;
 
 class DownloadRelease
 {
-    use InteractsWithGithubApi,
-        InteractsWithSparkConfiguration;
 
     /**
      * The command instance.
@@ -85,47 +81,6 @@ class DownloadRelease
     }
 
     /**
-     * Download the latest Spark release.
-     *
-     * @param  string  $release
-     * @return string
-     */
-    public function old_download($release)
-    {
-        file_put_contents(
-            $zipPath = base_path('spark-archive.zip'), $this->zipResponse($release)
-        );
-
-        $this->extractZip($zipPath);
-
-        return $this->releasePath();
-    }
-
-    /**
-     * Get the raw Zip response for the given release.
-     *
-     * @param  string  $release
-     * @return string
-     */
-    protected function old_zipResponse($release)
-    {
-        try {
-            return (string) (new HttpClient)->get(
-                $this->sparkUrl.'/api/releases/'.$release.'/download?api_token='.$this->readToken(),
-                ['headers' => [
-                    'X-Requested-With' => 'XMLHttpRequest',
-                ]]
-            )->getBody();
-        } catch (ClientException $e) {
-            if ($e->getResponse()->getStatusCode() === 401) {
-                $this->invalidLicense($release);
-            }
-
-            throw $e;
-        }
-    }
-
-    /**
      * Extract the Spark Zip archive.
      *
      * @param  string  $zipPath
@@ -137,7 +92,7 @@ class DownloadRelease
 
         $archive->open($zipPath);
 
-        $archive->extractTo(base_path('spark-new'));
+        $archive->extractTo($this->command->path.'/edukcate-new');
 
         $archive->close();
 
@@ -151,21 +106,20 @@ class DownloadRelease
      */
     protected function releasePath()
     {
-        return base_path('spark-new'. DIRECTORY_SEPARATOR .basename(
-            (new Filesystem)->directories(base_path('spark-new'))[0]
-        ));
+        return $this->command->path.'/edukcate-new/'.basename(
+            (new Filesystem)->directories($this->command->path.'/edukcate-new')[0]
+        );
     }
 
     /**
-     * Inform the user that their Spark license is invalid.
+     * Inform the user that their Edukcate download is invalid.
      *
-     * @param  string  $release
      * @return void
      */
-    protected function invalidLicense($release)
+    protected function invalidRelease()
     {
-        $this->command->line(
-            '<fg=red>You do not own any licenses for release ['.$release.'].</>'
+        $this->command->output->writeln(
+            '<fg=red>There was an issue identifying the latest release.</>'
         );
 
         exit(1);

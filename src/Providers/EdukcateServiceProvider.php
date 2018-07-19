@@ -1,22 +1,21 @@
 <?php
 
-namespace Laravel\Spark\Providers;
+namespace KiliCow\Edukcate\Providers;
 
-use Laravel\Spark\Spark;
-use Laravel\Spark\TokenGuard;
+use KiliCow\Edukcate\Edukcate;
+use KiliCow\Edukcate\TokenGuard;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
-use Laravel\Spark\Validation\StateValidator;
-use Laravel\Spark\Validation\VatIdValidator;
-use Laravel\Spark\Validation\CountryValidator;
-use Laravel\Spark\Console\Commands\InstallCommand;
-use Laravel\Spark\Console\Commands\UpdateCommand;
-use Laravel\Spark\Console\Commands\VersionCommand;
-use Laravel\Spark\Console\Commands\UpdateViewsCommand;
-use Laravel\Spark\Console\Commands\StorePerformanceIndicatorsCommand;
+use KiliCow\Edukcate\Validation\StateValidator;
+use KiliCow\Edukcate\Validation\VatIdValidator;
+use KiliCow\Edukcate\Validation\CountryValidator;
+use KiliCow\Edukcate\Console\Commands\InstallCommand;
+use KiliCow\Edukcate\Console\Commands\UpdateCommand;
+use KiliCow\Edukcate\Console\Commands\VersionCommand;
+use KiliCow\Edukcate\Console\Commands\UpdateViewsCommand;
 
 class EdukcateServiceProvider extends ServiceProvider
 {
@@ -35,13 +34,13 @@ class EdukcateServiceProvider extends ServiceProvider
         Validator::extend('country', CountryValidator::class.'@validate');
         Validator::extend('vat_id', VatIdValidator::class.'@validate');
 
-        Auth::viaRequest('spark', function ($request) {
+        Auth::viaRequest('edukcate', function ($request) {
             return app(TokenGuard::class)->user($request);
         });
     }
 
     /**
-     * Define the Spark routes.
+     * Define the Edukcate routes.
      *
      * @return void
      */
@@ -54,7 +53,7 @@ class EdukcateServiceProvider extends ServiceProvider
         // controller namespace. After that we will load the Spark routes file.
         if (! $this->app->routesAreCached()) {
             Route::group([
-                'namespace' => 'Laravel\Spark\Http\Controllers'],
+                'namespace' => 'KiliCow\Edukcate\Http\Controllers'],
                 function ($router) {
                     require __DIR__.'/../Http/routes.php';
                 }
@@ -63,15 +62,15 @@ class EdukcateServiceProvider extends ServiceProvider
     }
 
     /**
-     * Define the Spark route model bindings.
+     * Define the Edukcate route model bindings.
      *
      * @return void
      */
     protected function defineRouteBindings()
     {
-        Route::model('team', Spark::teamModel());
+        Route::model('team', Edukcate::teamModel());
 
-        Route::model('team_member', Spark::userModel());
+        Route::model('team_member', Edukcate::userModel());
     }
 
     /**
@@ -81,9 +80,9 @@ class EdukcateServiceProvider extends ServiceProvider
      */
     protected function defineResources()
     {
-        $this->loadViewsFrom(SPARK_PATH.'/resources/views', 'spark');
+        $this->loadViewsFrom(EDUKCATE_PATH.'/resources/views', 'edukcate');
 
-        $this->loadTranslationsFrom(SPARK_PATH.'/resources/lang', 'spark');
+        $this->loadTranslationsFrom(EDUKCATE_PATH.'/resources/lang', 'edukcate');
 
         if ($this->app->runningInConsole()) {
             $this->defineViewPublishing();
@@ -104,8 +103,8 @@ class EdukcateServiceProvider extends ServiceProvider
     public function defineViewPublishing()
     {
         $this->publishes([
-            SPARK_PATH.'/resources/views' => resource_path('views/vendor/spark'),
-        ], 'spark-views');
+            EDUKCATE_PATH.'/resources/views' => resource_path('views/vendor/edukcate'),
+        ], 'edukcate-views');
     }
 
     /**
@@ -116,12 +115,12 @@ class EdukcateServiceProvider extends ServiceProvider
     public function defineAssetPublishing()
     {
         $this->publishes([
-            SPARK_PATH.'/resources/assets/js' => resource_path('assets/js/spark'),
-        ], 'spark-js');
+            EDUKCATE_PATH.'/resources/assets/js' => resource_path('assets/js/edukcate'),
+        ], 'edukcate-js');
 
         $this->publishes([
-            SPARK_PATH.'/resources/assets/sass' => resource_path('assets/sass/spark'),
-        ], 'spark-sass');
+            EDUKCATE_PATH.'/resources/assets/sass' => resource_path('assets/sass/edukcate'),
+        ], 'edukcate-sass');
     }
 
     /**
@@ -132,8 +131,8 @@ class EdukcateServiceProvider extends ServiceProvider
     public function defineLanguagePublishing()
     {
         $this->publishes([
-            SPARK_PATH.'/install-stubs/resources/lang' => resource_path('lang'),
-        ], 'spark-lang');
+            EDUKCATE_PATH.'/install-stubs/resources/lang' => resource_path('lang'),
+        ], 'edukcate-lang');
     }
 
     /**
@@ -144,11 +143,11 @@ class EdukcateServiceProvider extends ServiceProvider
     public function defineFullPublishing()
     {
         $this->publishes([
-            SPARK_PATH.'/resources/views' => resource_path('views/vendor/spark'),
-            SPARK_PATH.'/resources/assets/js' => resource_path('assets/js/spark'),
-            SPARK_PATH.'/resources/assets/sass' => resource_path('assets/sass/spark'),
-            SPARK_PATH.'/install-stubs/resources/lang' => resource_path('lang'),
-        ], 'spark-full');
+            EDUKCATE_PATH.'/resources/views' => resource_path('views/vendor/edukcate'),
+            EDUKCATE_PATH.'/resources/assets/js' => resource_path('assets/js/edukcate'),
+            EDUKCATE_PATH.'/resources/assets/sass' => resource_path('assets/sass/edukcate'),
+            EDUKCATE_PATH.'/install-stubs/resources/lang' => resource_path('lang'),
+        ], 'edukcate-full');
     }
 
     /**
@@ -158,12 +157,12 @@ class EdukcateServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (! defined('SPARK_PATH')) {
-            define('SPARK_PATH', realpath(__DIR__.'/../../'));
+        if (! defined('EDUKCATE_PATH')) {
+            define('EDUKCATE_PATH', realpath(__DIR__.'/../../'));
         }
 
-        if (! class_exists('Spark')) {
-            class_alias('Laravel\Spark\Spark', 'Spark');
+        if (! class_exists('Edukcate')) {
+            class_alias('KiliCow\Edukcate\Edukcate', 'Edukcate');
         }
 
         if ($this->app->runningInConsole()) {
@@ -171,7 +170,6 @@ class EdukcateServiceProvider extends ServiceProvider
                 InstallCommand::class,
                 UpdateCommand::class,
                 UpdateViewsCommand::class,
-                StorePerformanceIndicatorsCommand::class,
                 VersionCommand::class,
             ]);
         }
@@ -180,7 +178,7 @@ class EdukcateServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the Spark services.
+     * Register the Edukcate services.
      *
      * @return void
      */
@@ -229,7 +227,7 @@ class EdukcateServiceProvider extends ServiceProvider
         ];
 
         foreach ($services as $key => $value) {
-            $this->app->singleton('Laravel\Spark\\'.$key, 'Laravel\Spark\\'.$value);
+            $this->app->singleton('KiliCow\Edukcate\\'.$key, 'KiliCow\Edukcate\\'.$value);
         }
     }
 
@@ -240,7 +238,7 @@ class EdukcateServiceProvider extends ServiceProvider
      */
     protected function registerAuthyService()
     {
-        $this->app->when('Laravel\Spark\Services\Security\Authy')
+        $this->app->when('KiliCow\Edukcate\Services\Security\Authy')
                 ->needs('$key')
                 ->give(function () {
                     return config('services.authy.secret');
@@ -267,9 +265,9 @@ class EdukcateServiceProvider extends ServiceProvider
     private function registerApiTokenRepository()
     {
         $concrete = class_exists('Laravel\Passport\Passport')
-                        ? 'Laravel\Spark\Repositories\PassportTokenRepository'
-                        : 'Laravel\Spark\Repositories\TokenRepository';
+                        ? 'KiliCow\Edukcate\Repositories\PassportTokenRepository'
+                        : 'KiliCow\Edukcate\Repositories\TokenRepository';
 
-        $this->app->singleton('Laravel\Spark\Contracts\Repositories\TokenRepository', $concrete);
+        $this->app->singleton('KiliCow\Edukcate\Contracts\Repositories\TokenRepository', $concrete);
     }
 }

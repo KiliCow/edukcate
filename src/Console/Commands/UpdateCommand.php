@@ -5,11 +5,9 @@ namespace KiliCow\Edukcate\Console\Commands;
 use KiliCow\Edukcate\Edukcate;
 use Illuminate\Console\Command;
 use KiliCow\Edukcate\Console\Updating;
-use KiliCow\Edukcate\InteractsWithGithubApi;
 
 class UpdateCommand extends Command
 {
-    use InteractsWithGithubApi;
 
     /**
      * The name and signature of the console command.

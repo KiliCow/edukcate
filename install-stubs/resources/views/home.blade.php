@@ -1,4 +1,4 @@
-@extends('spark::layouts.app')
+@extends('edukcate::layouts.app')
 
 @section('content')
 <home :user="user" inline-template>

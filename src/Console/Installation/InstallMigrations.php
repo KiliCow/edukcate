@@ -39,6 +39,8 @@ class InstallMigrations
         $date = Carbon::now();
 
         foreach ($this->getMigrations() as $key => $migration) {
+
+            $name = $this->formatName($migration);
             
             // When installing the migrations, we will add a number of seconds to the current time
             // so we will install the migrations in the proper sequence when we put them in the
@@ -48,9 +50,22 @@ class InstallMigrations
 
             copy(
                 EDUKCATE_STUB_PATH.'/database/'.$migration.'.php',
-                database_path('migrations/'.$timestamp.'_'.$migration.'.php')
+                database_path('migrations/'.$timestamp.'_'.$name.'.php')
             );
         }
+    }
+
+    /**
+     * Format the migration name.
+     *
+     * @param  string  $migration
+     * @return string
+     */
+    protected function formatName($migration)
+    {
+        return str_replace(
+            ['migrations/'], '', $migration
+        );
     }
 
     /**

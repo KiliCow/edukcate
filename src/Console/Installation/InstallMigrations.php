@@ -66,10 +66,7 @@ class InstallMigrations
             'migrations/create_users_table',
             'migrations/create_password_resets_table',
             'migrations/create_api_tokens_table',
-            'migrations/create_subscriptions_table',
-            'migrations/create_invoices_table',
             'migrations/create_notifications_table',
-            'migrations/create_invitations_table',
         ];
     }
 

@@ -35,7 +35,7 @@ class EdukcateServiceProvider extends ServiceProvider
     protected $usesApi = true;
 
     /**
-     * Finish configuring Spark for the application.
+     * Finish configuring Epark for the application.
      *
      * @return void
      */

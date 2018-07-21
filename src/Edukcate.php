@@ -4,7 +4,7 @@ namespace KiliCow\Edukcate;
 
 class Edukcate
 {
-    use Configuration\ManagesApiOpetions,
+    use Configuration\ManagesApiOptions,
     	Configuration\ManagesAppDetails,
     	Configuration\ManagesAppOptions,
         Configuration\ManagesModelOptions,
